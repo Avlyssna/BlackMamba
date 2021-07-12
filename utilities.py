@@ -18,7 +18,7 @@ class CipherContext:
 	def encrypt(self, plaintext):
 		if not getattr(self, '_cipher_key', None):
 			self._cipher_salt = token_bytes(32)
-			self._cipher_key = derive_key(password, self._salt)
+			self._cipher_key = derive_key(password, self._cipher_salt)
 			self._known_keys[self._cipher_salt] = self._cipher_key
 
 		# The salt (IV) can only be as large as the AES block-size.
